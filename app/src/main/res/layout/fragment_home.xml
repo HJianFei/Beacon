@@ -1,0 +1,83 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:qt="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hjianfei.beacon.view.home.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!--<ImageView-->
+    <!--android:id="@+id/progressBar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="72dp" />-->
+
+    <me.wangyuwei.banner.BannerView
+        android:id="@+id/banner_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        qt:qt_line_color="#fff" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/nature"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_book_white_24dp"
+                android:text="自然风景" />
+
+            <Button
+                android:id="@+id/human"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_book_white_24dp"
+                android:text="人文探索" />
+
+            <Button
+                android:id="@+id/outdoor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_book_white_24dp"
+                android:text="户外拓展" />
+
+            <Button
+                android:id="@+id/history"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_book_white_24dp"
+                android:text="历史古迹" />
+
+            <Button
+                android:id="@+id/hsistory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_book_white_24dp"
+                android:text="历史古迹" />
+
+            <Button
+                android:id="@+id/shistory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_book_white_24dp"
+                android:text="历史古迹" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
+</LinearLayout>
