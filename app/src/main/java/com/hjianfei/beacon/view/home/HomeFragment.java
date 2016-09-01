@@ -139,4 +139,10 @@ public class HomeFragment extends BaseFragment implements HomeView {
         homePresenter.onDestroy();
         super.onDestroy();
     }
+
+    @Override
+    public void onStop() {
+        lt.success();
+        super.onStop();
+    }
 }

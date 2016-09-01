@@ -3,4 +3,14 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_appreciate">文物鉴赏</string>
+    <string name="home_blue_and_white">青花之约</string>
+    <string name="home_appreciates">珍品鉴赏</string>
+    <string name="home_nature">自然标本</string>
+    <string name="home_special_topic">专题鉴赏</string>
+    <string name="home_forecast">展览预告</string>
+    <string name="home_forecast_more">更多</string>
+    <string name="home_often">常设展览</string>
+    <string name="home_temp">临时展览</string>
+    <string name="home_back">展览回顾</string>
 </resources>

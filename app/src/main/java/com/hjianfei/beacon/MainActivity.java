@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         ButterKnife.bind(this);
         welcomeScreen = new WelcomeScreenHelper(this, SplashActivity.class);
         welcomeScreen.show(savedInstanceState);
+        bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
         bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, "首页").setActiveColorResource(R.color.orange))
