@@ -2,46 +2,85 @@ package com.hjianfei.beacon.view.home;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.hjianfei.beacon.R;
+import com.hjianfei.beacon.adapter.HomeViewPagerAdapter;
+import com.hjianfei.beacon.bean.Exhibition;
 import com.hjianfei.beacon.bean.ViewPager;
 import com.hjianfei.beacon.presenter.home.HomePresenter;
 import com.hjianfei.beacon.presenter.home.HomePresenterImpl;
+import com.hjianfei.beacon.view.appreciate.AppreciateActivity;
 import com.hjianfei.beacon.view.base.BaseFragment;
-
-import net.steamcrafted.loadtoast.LoadToast;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.jude.rollviewpager.OnItemClickListener;
+import com.jude.rollviewpager.RollPagerView;
+import com.jude.rollviewpager.hintview.ColorPointHintView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import me.wangyuwei.banner.BannerEntity;
-import me.wangyuwei.banner.BannerView;
-import me.wangyuwei.banner.OnBannerClickListener;
+import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
+import static com.hjianfei.beacon.R.id.home_treasure_appreciate;
 
 public class HomeFragment extends BaseFragment implements HomeView {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String TAG = "appreciate_type";
+    @BindView(R.id.home_view_pager)
+    RollPagerView mHomeViewPager;
+    @BindView(R.id.home_blue_and_white)
+    Button mHomeBlueAndWhite;
+    @BindView(home_treasure_appreciate)
+    Button mHomeTreasureAppreciate;
+    @BindView(R.id.home_nature_specimen)
+    Button mHomeNatureSpecimen;
+    @BindView(R.id.home_special_appreciate)
+    Button mHomeSpecialAppreciate;
+    @BindView(R.id.forecast_more)
+    TextView mForecastMore;
+    @BindView(R.id.iv_forecast_more)
+    ImageView mIvForecastMore;
+    @BindView(R.id.forecast_title)
+    TextView mForecastTitle;
+    @BindView(R.id.often_more)
+    TextView mOftenMore;
+    @BindView(R.id.textView)
+    TextView mTextView;
+    @BindView(R.id.iv_often_more)
+    ImageView mIvOftenMore;
+    @BindView(R.id.often_title)
+    TextView mOftenTitle;
+    @BindView(R.id.temp_more)
+    TextView mTempMore;
+    @BindView(R.id.iv_temp_more)
+    ImageView mIvTempMore;
+    @BindView(R.id.temp_title)
+    TextView mTempTitle;
+    @BindView(R.id.back_more)
+    TextView mBackMore;
+    @BindView(R.id.iv_back_more)
+    ImageView mIvBackMore;
+    @BindView(R.id.back_title)
+    TextView mBackTitle;
 
     private String mParam1;
     private String mParam2;
 
     private Context mContext;
     private HomePresenter homePresenter;
-    //进度条
-    private LoadToast lt;
-    @BindView(R.id.banner_view)
-    BannerView mBannerView;
-    private List<BannerEntity> entities;
-    private List<ViewPager.ViewPagersBean> viewPagers;
+    private SweetAlertDialog mDialog;
+    private Intent mIntent;
 
     public HomeFragment() {
     }
@@ -80,57 +119,97 @@ public class HomeFragment extends BaseFragment implements HomeView {
     }
 
     private void initView() {
-
-        lt = new LoadToast(mContext).setProgressColor(Color.RED).setText("").setTranslationY(100);
-        homePresenter = new HomePresenterImpl(this, mContext);
+        homePresenter = new HomePresenterImpl(this);
         homePresenter.onStart();
-        //初始化ViewPager
 
     }
 
     @Override
-    public void initDatas(ViewPager viewPager) {
-        entities = new ArrayList<>();
-        viewPagers = viewPager.getViewPagers();
-        for (ViewPager.ViewPagersBean viewPagersBean : viewPagers) {
-            BannerEntity bannerEntity = new BannerEntity();
-            bannerEntity.imageUrl = viewPagersBean.getImg_url();
-            bannerEntity.title = viewPagersBean.getContent();
-            entities.add(bannerEntity);
-        }
-        mBannerView.setEntities(entities);
-        mBannerView.setDrawingCacheEnabled(true);
-        mBannerView.setOnBannerClickListener(new OnBannerClickListener() {
+    public void initHomeViewPager(ViewPager viewPager) {
+        //初始化ViewPager
+        mHomeViewPager.setPlayDelay(3000);
+        mHomeViewPager.setAdapter(new HomeViewPagerAdapter(viewPager.getViewPagers()));
+        mHomeViewPager.setHintView(new ColorPointHintView(mContext, Color.YELLOW, Color.WHITE));
+        mHomeViewPager.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onClick(int position) {
-                Toast.makeText(mContext, position + "=> " + viewPagers.get(position).getDetail_url(), Toast.LENGTH_SHORT).show();
+            public void onItemClick(int position) {
+
             }
         });
     }
 
     @Override
+    public void initForecastExhibition(Exhibition exhibition) {
+        System.out.println(exhibition);
+        Glide.with(mContext)
+                .load(exhibition.getExhibition().getImg_url())
+                .placeholder(R.drawable.photo)
+                .error(R.drawable.photo)
+                .into(mIvForecastMore);
+        mForecastTitle.setText(exhibition.getExhibition().getContent());
+
+
+    }
+
+    @Override
+    public void initOftenExhibition(Exhibition exhibition) {
+        System.out.println(exhibition);
+        Glide.with(mContext)
+                .load(exhibition.getExhibition().getImg_url())
+                .placeholder(R.drawable.photo)
+                .error(R.drawable.photo)
+                .into(mIvOftenMore);
+        mOftenTitle.setText(exhibition.getExhibition().getContent());
+
+    }
+
+    @Override
+    public void initTempExhibition(Exhibition exhibition) {
+        System.out.println(exhibition);
+        Glide.with(mContext)
+                .load(exhibition.getExhibition().getImg_url())
+                .placeholder(R.drawable.photo)
+                .error(R.drawable.photo)
+                .into(mIvTempMore);
+        mTempTitle.setText(exhibition.getExhibition().getContent());
+
+    }
+
+    @Override
+    public void initBackExhibition(Exhibition exhibition) {
+        System.out.println(exhibition);
+        Glide.with(mContext)
+                .load(exhibition.getExhibition().getImg_url())
+                .placeholder(R.drawable.photo)
+                .error(R.drawable.photo)
+                .into(mIvBackMore);
+        mBackTitle.setText(exhibition.getExhibition().getContent());
+
+    }
+
+    @Override
     public void showProgress() {
-        lt.show();
-
+        mDialog = new SweetAlertDialog(mContext, SweetAlertDialog.PROGRESS_TYPE);
+        mDialog.setTitleText("加载中");
+        mDialog.show();
     }
 
     @Override
-    public void hideProgress(boolean flag) {
-        if (flag) {
-            lt.success();
-        } else {
-            lt.error();
+    public void hideProgress() {
+        if (null != mDialog) {
+            mDialog.dismiss();
         }
+    }
+
+    @Override
+    public void showError() {
+        mDialog = new SweetAlertDialog(mContext, SweetAlertDialog.ERROR_TYPE);
+        mDialog.show();
 
     }
 
     @Override
-    public void showError(String msg, View.OnClickListener onClickListener) {
-
-    }
-
-    @Override
-    public void showEmpty(String msg, View.OnClickListener onClickListener) {
+    public void showEmpty() {
 
     }
 
@@ -142,7 +221,54 @@ public class HomeFragment extends BaseFragment implements HomeView {
 
     @Override
     public void onStop() {
-        lt.success();
+        if (null != mDialog) {
+            mDialog.dismiss();
+        }
         super.onStop();
+    }
+
+    @OnClick({R.id.home_blue_and_white, R.id.home_treasure_appreciate,
+            R.id.home_nature_specimen, R.id.home_special_appreciate,
+            R.id.forecast_more, R.id.often_more, R.id.temp_more,
+            R.id.back_more})
+    public void onClickListener(View view) {
+        switch (view.getId()) {
+            case R.id.home_blue_and_white:
+                mIntent = new Intent(mContext, AppreciateActivity.class);
+                mIntent.putExtra(TAG, "青花瓷之约");
+                startActivity(mIntent);
+                break;
+            case R.id.home_treasure_appreciate:
+                mIntent = new Intent(mContext, AppreciateActivity.class);
+                mIntent.putExtra(TAG, "珍品鉴赏");
+                startActivity(mIntent);
+
+                break;
+            case R.id.home_nature_specimen:
+                mIntent = new Intent(mContext, AppreciateActivity.class);
+                mIntent.putExtra(TAG, "专题鉴赏");
+                startActivity(mIntent);
+
+                break;
+            case R.id.home_special_appreciate:
+                mIntent = new Intent(mContext, AppreciateActivity.class);
+                mIntent.putExtra(TAG, "自然标本");
+                startActivity(mIntent);
+
+                break;
+            case R.id.forecast_more:
+
+                break;
+            case R.id.often_more:
+
+                break;
+            case R.id.temp_more:
+
+                break;
+            case R.id.back_more:
+
+                break;
+        }
+
     }
 }
