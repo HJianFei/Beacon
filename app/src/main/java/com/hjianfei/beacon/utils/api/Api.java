@@ -1,6 +1,7 @@
 package com.hjianfei.beacon.utils.api;
 
 
+import com.hjianfei.beacon.bean.Appreciates;
 import com.hjianfei.beacon.bean.Exhibition;
 import com.hjianfei.beacon.bean.Exhibitions;
 import com.hjianfei.beacon.bean.ViewPager;
@@ -33,6 +34,10 @@ public interface Api {
     //获取Home页面展览回顾的信息
     @GET(Urls.IV_BACK_MORE)
     Observable<Exhibition> getBack();
+
+    //获取全部青花瓷之约的信息
+    @GET(Urls.API_HOME_BLUE_AND_WHITE + "/{type}")
+    Observable<Appreciates> getAllAppatesByType();
 
     //获取全部展览信息(展览预告)
     @GET(Urls.ALL_EXHIBITION_BY_TYPE_0)

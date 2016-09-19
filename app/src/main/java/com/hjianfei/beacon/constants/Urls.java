@@ -13,13 +13,13 @@ public class Urls {
     //首页ViewPager数据地址
     public static final String API_VIEWPAGER = "viewPager!getAllViewPager";
     //获取全部青花瓷之约的信息
-    public static final String API_HOME_BLUE_AND_WHITE = "appreciate!getAllAppreciate?appreciate.type=青花瓷之约";
+    public static final String API_HOME_BLUE_AND_WHITE = "appreciate!getAllAppreciate";
     //获取全部珍品鉴赏的信息
-    public static final String HOME_TREASURE_APPRECIATE = "appreciate!getAllAppreciate?appreciate.type=珍品鉴赏";
+    public static final String HOME_TREASURE_APPRECIATE = "appreciate!getAllAppreciate?type=珍品鉴赏";
     //获取全部专题鉴赏的信息
-    public static final String HOME_NATURE_SPECIMEN = "appreciate!getAllAppreciate?appreciate.type=专题鉴赏";
+    public static final String HOME_NATURE_SPECIMEN = "appreciate!getAllAppreciate?type=专题鉴赏";
     //获取全部自然标本的信息
-    public static final String HOME_SPECIAL_APPRECIATE = "appreciate!getAllAppreciate?appreciate.type=自然标本";
+    public static final String HOME_SPECIAL_APPRECIATE = "appreciate!getAllAppreciate?type=自然标本";
     //获取展览预告的信息
     public static final String IV_FORECAST_MORE = "exhibition!getFirstExhibition?type=0";
     //获取常设展览的信息

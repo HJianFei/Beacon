@@ -14,6 +14,6 @@ import java.util.List;
 public interface AppreciateView extends BaseView {
 
     //页面可见时，第一次加载页面数据
-    void initRecyclerView(List<Appreciates> appreciates);
+    void initRecyclerView(List<Appreciates.AppreciatesBean> appreciatesBeans);
 
 }
