@@ -8,7 +8,7 @@ package com.hjianfei.beacon.presenter.appreciate;
 
 public interface AppreciatePresenter {
 
-    void onStart(String type);
+    void onStart(String tag);
 
     //下拉刷新页面
     void refreshAppreciates();

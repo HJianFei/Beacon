@@ -36,8 +36,17 @@ public interface Api {
     Observable<Exhibition> getBack();
 
     //获取全部青花瓷之约的信息
-    @GET(Urls.API_HOME_BLUE_AND_WHITE + "/{type}")
-    Observable<Appreciates> getAllAppatesByType();
+    @GET(Urls.API_HOME_BLUE_AND_WHITE)
+    Observable<Appreciates> getAllAppatesByType_0();
+
+    @GET(Urls.HOME_TREASURE_APPRECIATE)
+    Observable<Appreciates> getAllAppatesByType_1();
+
+    @GET(Urls.HOME_NATURE_SPECIMEN)
+    Observable<Appreciates> getAllAppatesByType_2();
+
+    @GET(Urls.HOME_SPECIAL_APPRECIATE)
+    Observable<Appreciates> getAllAppatesByType_3();
 
     //获取全部展览信息(展览预告)
     @GET(Urls.ALL_EXHIBITION_BY_TYPE_0)

@@ -9,11 +9,11 @@ package com.hjianfei.beacon.constants;
 public class Urls {
 
     //服务器地址
-    public static final String API_SERVER = "http://192.168.191.1:8080/BeaconSys/";
+    public static final String API_SERVER = "http://192.168.1.14:8080/BeaconSys/";
     //首页ViewPager数据地址
     public static final String API_VIEWPAGER = "viewPager!getAllViewPager";
     //获取全部青花瓷之约的信息
-    public static final String API_HOME_BLUE_AND_WHITE = "appreciate!getAllAppreciate";
+    public static final String API_HOME_BLUE_AND_WHITE = "appreciate!getAllAppreciate?type=青花瓷之约";
     //获取全部珍品鉴赏的信息
     public static final String HOME_TREASURE_APPRECIATE = "appreciate!getAllAppreciate?type=珍品鉴赏";
     //获取全部专题鉴赏的信息

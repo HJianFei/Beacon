@@ -25,9 +25,15 @@ public interface AppreciateIndicator {
         void onError();
     }
 
-    void getAllAppreciateByType(onFinishListener listener);
+    void getAllAppreciateByType_0(onFinishListener listener);
 
-    void getRefreshAllAppreciateByType(onFinishListener listener);
+    void getAllAppreciateByType_1(onFinishListener listener);
 
-    void getLoadMoreAllAppreciateByType(onFinishListener listener);
+    void getAllAppreciateByType_2(onFinishListener listener);
+
+    void getAllAppreciateByType_3(onFinishListener listener);
+
+    void getRefreshAllAppreciateByType_0(onFinishListener listener);
+
+    void getLoadMoreAllAppreciateByType_0(onFinishListener listener);
 }

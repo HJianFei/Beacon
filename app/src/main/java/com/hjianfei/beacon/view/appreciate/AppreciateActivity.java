@@ -47,7 +47,7 @@ public class AppreciateActivity extends AppCompatActivity implements AppreciateV
         ButterKnife.bind(this);
         initView();
         mAppreciatePresenter = new AppreciatePresenterImpl(this);
-        mAppreciatePresenter.onStart();
+        mAppreciatePresenter.onStart(TAG);
     }
 
     private void initView() {

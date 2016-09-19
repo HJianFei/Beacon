@@ -24,11 +24,19 @@ public class AppreciatePresenterImpl implements AppreciatePresenter, AppreciateI
     }
 
     @Override
-    public void onStart() {
+    public void onStart(String tag) {
         if (null != mAppreciateView) {
             mAppreciateView.showProgress();
         }
-        mAppreciateIndicator.getAllAppreciateByType(this);
+        if ("青花瓷之约".equals(tag)) {
+            mAppreciateIndicator.getAllAppreciateByType_0(this);
+        } else if ("珍品鉴赏".equals(tag)) {
+            mAppreciateIndicator.getAllAppreciateByType_1(this);
+        } else if ("自然标本".equals(tag)) {
+            mAppreciateIndicator.getAllAppreciateByType_2(this);
+        } else if ("专题鉴赏".equals(tag)) {
+            mAppreciateIndicator.getAllAppreciateByType_3(this);
+        }
 
     }
 
@@ -37,7 +45,7 @@ public class AppreciatePresenterImpl implements AppreciatePresenter, AppreciateI
         if (null != mAppreciateView) {
             mAppreciateView.showProgress();
         }
-        mAppreciateIndicator.getRefreshAllAppreciateByType(this);
+        mAppreciateIndicator.getRefreshAllAppreciateByType_0(this);
 
     }
 
@@ -46,7 +54,7 @@ public class AppreciatePresenterImpl implements AppreciatePresenter, AppreciateI
         if (null != mAppreciateView) {
             mAppreciateView.showProgress();
         }
-        mAppreciateIndicator.getLoadMoreAllAppreciateByType(this);
+        mAppreciateIndicator.getLoadMoreAllAppreciateByType_0(this);
 
     }
 
