@@ -1,43 +1,58 @@
 package com.hjianfei.beacon.view.education;
 
 
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.jdsjlzx.interfaces.OnItemClickListener;
+import com.github.jdsjlzx.recyclerview.LRecyclerView;
+import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.hjianfei.beacon.R;
+import com.hjianfei.beacon.adapter.CommonAdapter;
+import com.hjianfei.beacon.adapter.ViewHolder;
+import com.hjianfei.beacon.bean.Educations;
+import com.hjianfei.beacon.presenter.education.EducationPresenter;
+import com.hjianfei.beacon.presenter.education.EducationPresenterImpl;
+import com.hjianfei.beacon.utils.T;
+import com.hjianfei.beacon.view.base.BaseFragment;
+import com.sevenheaven.segmentcontrol.SegmentControl;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link EducationFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class EducationFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
+
+public class EducationFragment extends BaseFragment implements EducationView {
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
+    @BindView(R.id.segment_control)
+    SegmentControl segmentControl;
+    @BindView(R.id.education_recyclerView)
+    LRecyclerView educationRecyclerView;
+    private CommonAdapter<Educations.EducationsBean> mAdapter;
+    private List<Educations.EducationsBean> listData = new ArrayList<>();
+    private LRecyclerViewAdapter mLRecyclerViewAdapter = null;
+    private SweetAlertDialog mDialog;
     private String mParam1;
     private String mParam2;
+    private Context mContext;
+    private EducationPresenter mEducationPresenter;
 
 
     public EducationFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EducationFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static EducationFragment newInstance(String param1, String param2) {
         EducationFragment fragment = new EducationFragment();
         Bundle args = new Bundle();
@@ -45,6 +60,12 @@ public class EducationFragment extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        this.mContext = context;
+        super.onAttach(context);
     }
 
     @Override
@@ -59,8 +80,135 @@ public class EducationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_education, container, false);
+        View view = inflater.inflate(R.layout.fragment_education, container, false);
+        ButterKnife.bind(this, view);
+        mEducationPresenter = new EducationPresenterImpl(this);
+        mEducationPresenter.onStart("小知识");
+        segmentControl.setOnSegmentControlClickListener(new SegmentControl.OnSegmentControlClickListener() {
+            @Override
+            public void onSegmentControlClick(int index) {
+                switch (index) {
+                    case 0:
+                        T.showShort(mContext, "小知识");
+                        mEducationPresenter.onStart("小知识");
+                        break;
+                    case 1:
+                        T.showShort(mContext, "广东历史");
+                        mEducationPresenter.onStart("广东历史");
+                        break;
+                }
+            }
+        });
+        initView();
+        return view;
     }
 
+    private void initView() {
+        mAdapter = new CommonAdapter<Educations.EducationsBean>(mContext, R.layout.education_recyclerview_item, listData) {
+            @Override
+            public void setData(ViewHolder holder, Educations.EducationsBean educationsBean) {
+                holder.setText(R.id.education_item_content, educationsBean.getContent());
+                holder.setText(R.id.education_item_content_time, educationsBean.getContent_time());
+
+            }
+        };
+        mLRecyclerViewAdapter = new LRecyclerViewAdapter(mContext, mAdapter);
+        educationRecyclerView.setAdapter(mLRecyclerViewAdapter);
+        educationRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        educationRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
+        educationRecyclerView.setArrowImageView(R.drawable.ic_pulltorefresh_arrow);
+        educationRecyclerView.setLScrollListener(new LRecyclerView.LScrollListener() {
+            @Override
+            public void onRefresh() {
+                mEducationPresenter.refreshEducations();
+            }
+
+            @Override
+            public void onScrollUp() {
+
+            }
+
+            @Override
+            public void onScrollDown() {
+
+            }
+
+            @Override
+            public void onBottom() {
+                mEducationPresenter.loadMoreEducations();
+
+            }
+
+            @Override
+            public void onScrolled(int i, int i1) {
+
+            }
+        });
+        mLRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                T.showShort(mContext, "item:" + i);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int i) {
+
+            }
+        });
+
+    }
+
+    @Override
+    public void initRecyclerView(List<Educations.EducationsBean> educationsBeans) {
+        listData.addAll(educationsBeans);
+        educationRecyclerView.refreshComplete();
+        mAdapter.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void showProgress() {
+        mDialog = new SweetAlertDialog(mContext, SweetAlertDialog.PROGRESS_TYPE);
+        mDialog.setTitleText("加载中");
+        mDialog.show();
+
+    }
+
+    @Override
+    public void hideProgress() {
+        if (null != mDialog) {
+            mDialog.dismiss();
+        }
+        educationRecyclerView.refreshComplete();
+        mAdapter.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void showError() {
+        educationRecyclerView.refreshComplete();
+        mAdapter.notifyDataSetChanged();
+        mDialog = new SweetAlertDialog(mContext, SweetAlertDialog.ERROR_TYPE);
+        mDialog.setTitleText("数据加载失败");
+        mDialog.show();
+    }
+
+    @Override
+    public void showEmpty() {
+        educationRecyclerView.refreshComplete();
+        mAdapter.notifyDataSetChanged();
+        mDialog = new SweetAlertDialog(mContext, SweetAlertDialog.ERROR_TYPE);
+        mDialog.setTitleText("没有数据");
+        mDialog.show();
+
+    }
+
+    @Override
+    public void onDestroy() {
+        if (null != mDialog) {
+            mDialog.dismiss();
+        }
+        mEducationPresenter.onDestroy();
+        super.onDestroy();
+    }
 }

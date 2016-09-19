@@ -2,6 +2,7 @@ package com.hjianfei.beacon.utils.api;
 
 
 import com.hjianfei.beacon.bean.Appreciates;
+import com.hjianfei.beacon.bean.Educations;
 import com.hjianfei.beacon.bean.Exhibition;
 import com.hjianfei.beacon.bean.Exhibitions;
 import com.hjianfei.beacon.bean.ViewPager;
@@ -63,5 +64,14 @@ public interface Api {
     //获取全部展览信息(展览预告)
     @GET(Urls.ALL_EXHIBITION_BY_TYPE_3)
     Observable<Exhibitions> getAllExhibitionByType_3();
+
+    //获取全部教育信息
+    //小知识
+    @GET(Urls.ALL_EDUCATION_BY_TYPE_0)
+    Observable<Educations> getAllEducationByType_0();
+
+    //广东历史
+    @GET(Urls.ALL_EDUCATION_BY_TYPE_1)
+    Observable<Educations> getAllEducationByType_1();
 
 }

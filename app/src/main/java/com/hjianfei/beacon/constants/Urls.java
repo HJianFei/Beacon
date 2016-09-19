@@ -38,6 +38,11 @@ public class Urls {
     public static final String ALL_EXHIBITION_BY_TYPE_2 = "exhibition!getAllExhibition?type=2";
     //展览回顾
     public static final String ALL_EXHIBITION_BY_TYPE_3 = "exhibition!getAllExhibition?type=3";
+    //获取全部教育数据
+    //小知识
+    public static final String ALL_EDUCATION_BY_TYPE_0 = "education!getAllEducation?type=0";
+    //广东历史
+    public static final String ALL_EDUCATION_BY_TYPE_1 = "education!getAllEducation?type=1";
 
 }
 
