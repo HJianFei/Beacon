@@ -1,5 +1,6 @@
 package com.hjianfei.beacon.view.exhibition;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.hjianfei.beacon.adapter.ViewHolder;
 import com.hjianfei.beacon.bean.Exhibitions;
 import com.hjianfei.beacon.presenter.exhibition.ExhibitionPresenter;
 import com.hjianfei.beacon.presenter.exhibition.ExhibitionPresenterImpl;
+import com.hjianfei.beacon.view.exhibitiondetail.ExhibitionDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +94,9 @@ public class ExhibitionActivity extends AppCompatActivity implements ExhibitionV
         mLRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
+                Intent intent = new Intent(ExhibitionActivity.this, ExhibitionDetailActivity.class);
+                intent.putExtra("detail_url", listData.get(i).getDetail_url());
+                startActivity(intent);
 
             }
 

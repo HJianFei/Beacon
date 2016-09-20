@@ -128,7 +128,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
     }
 
     @Override
-    public void initHomeViewPager(ViewPager viewPager) {
+    public void initHomeViewPager(final ViewPager viewPager) {
         //初始化ViewPager
         mHomeViewPager.setPlayDelay(3000);
         mHomeViewPager.setAdapter(new HomeViewPagerAdapter(viewPager.getViewPagers()));
@@ -136,6 +136,9 @@ public class HomeFragment extends BaseFragment implements HomeView {
         mHomeViewPager.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
+                mIntent.putExtra("detail_url", viewPager.getViewPagers().get(position).getDetail_url());
+                startActivity(mIntent);
 
             }
         });
