@@ -31,6 +31,7 @@ public class ExhibitionIndicatorImpl implements ExhibitionIndicator {
 
                     @Override
                     public void onNext(Exhibitions exhibitions) {
+                        listener.onExhibitionFinish(exhibitions.getExhibitions());
 
                     }
                 });

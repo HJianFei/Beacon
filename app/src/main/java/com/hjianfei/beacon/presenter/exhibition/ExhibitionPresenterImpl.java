@@ -1,6 +1,6 @@
 package com.hjianfei.beacon.presenter.exhibition;
 
-import com.hjianfei.beacon.bean.Exhibition;
+import com.hjianfei.beacon.bean.Exhibitions;
 import com.hjianfei.beacon.model.exhibition.ExhibitionIndicator;
 import com.hjianfei.beacon.model.exhibition.ExhibitionIndicatorImpl;
 import com.hjianfei.beacon.view.exhibition.ExhibitionView;
@@ -55,27 +55,27 @@ public class ExhibitionPresenterImpl implements ExhibitionPresenter, ExhibitionI
     }
 
     @Override
-    public void onExhibitionFinish(List<Exhibition.ExhibitionBean> exhibitionBeanList) {
+    public void onExhibitionFinish(List<Exhibitions.ExhibitionsBean> exhibitionBeansList) {
         if (null != mExhibitionView) {
             mExhibitionView.hideProgress();
         }
-        mExhibitionView.initRecyclerView(exhibitionBeanList);
+        mExhibitionView.initRecyclerView(exhibitionBeansList);
     }
 
     @Override
-    public void onRefreshSuccess(List<Exhibition.ExhibitionBean> exhibitionBeanList) {
+    public void onRefreshSuccess(List<Exhibitions.ExhibitionsBean> exhibitionBeansList) {
         if (null != mExhibitionView) {
             mExhibitionView.hideProgress();
         }
-        mExhibitionView.initRecyclerView(exhibitionBeanList);
+        mExhibitionView.initRecyclerView(exhibitionBeansList);
     }
 
     @Override
-    public void onLoadMoreSuccess(List<Exhibition.ExhibitionBean> exhibitionBeanList) {
+    public void onLoadMoreSuccess(List<Exhibitions.ExhibitionsBean> exhibitionBeansList) {
         if (null != mExhibitionView) {
             mExhibitionView.hideProgress();
         }
-        mExhibitionView.initRecyclerView(exhibitionBeanList);
+        mExhibitionView.initRecyclerView(exhibitionBeansList);
 
     }
 

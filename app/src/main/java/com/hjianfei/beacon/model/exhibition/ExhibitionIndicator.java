@@ -1,6 +1,6 @@
 package com.hjianfei.beacon.model.exhibition;
 
-import com.hjianfei.beacon.bean.Exhibition;
+import com.hjianfei.beacon.bean.Exhibitions;
 
 import java.util.List;
 
@@ -12,13 +12,13 @@ public interface ExhibitionIndicator {
 
     interface onFinishListener {
 
-        void onExhibitionFinish(List<Exhibition.ExhibitionBean> exhibitionBeanList);
+        void onExhibitionFinish(List<Exhibitions.ExhibitionsBean> exhibitionBeansList);
 
         //刷新成功
-        void onRefreshSuccess(List<Exhibition.ExhibitionBean> exhibitionBeanList);
+        void onRefreshSuccess(List<Exhibitions.ExhibitionsBean> exhibitionBeansList);
 
         //加载成功
-        void onLoadMoreSuccess(List<Exhibition.ExhibitionBean> exhibitionBeanList);
+        void onLoadMoreSuccess(List<Exhibitions.ExhibitionsBean> exhibitionBeansList);
 
         void onError();
     }

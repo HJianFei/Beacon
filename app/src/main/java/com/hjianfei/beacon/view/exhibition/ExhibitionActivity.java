@@ -13,7 +13,7 @@ import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.hjianfei.beacon.R;
 import com.hjianfei.beacon.adapter.CommonAdapter;
 import com.hjianfei.beacon.adapter.ViewHolder;
-import com.hjianfei.beacon.bean.Exhibition;
+import com.hjianfei.beacon.bean.Exhibitions;
 import com.hjianfei.beacon.presenter.exhibition.ExhibitionPresenter;
 import com.hjianfei.beacon.presenter.exhibition.ExhibitionPresenterImpl;
 
@@ -31,16 +31,17 @@ public class ExhibitionActivity extends AppCompatActivity implements ExhibitionV
     @BindView(R.id.exhibition_recyclerView)
     LRecyclerView exhibitionRecyclerView;
     private ExhibitionPresenter mExhibitionPresenter;
-    private CommonAdapter<Exhibition.ExhibitionBean> mAdapter;
-    private List<Exhibition.ExhibitionBean> listData = new ArrayList<>();
+    private CommonAdapter<Exhibitions.ExhibitionsBean> mAdapter;
+    private List<Exhibitions.ExhibitionsBean> listData = new ArrayList<>();
     private LRecyclerViewAdapter mLRecyclerViewAdapter = null;
     //对话框
     private SweetAlertDialog mDialog;
+    private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String type = getIntent().getStringExtra("type");
+        type = getIntent().getStringExtra("type");
         setContentView(R.layout.activity_exhibition);
         ButterKnife.bind(this);
         mExhibitionPresenter = new ExhibitionPresenterImpl(this);
@@ -49,11 +50,11 @@ public class ExhibitionActivity extends AppCompatActivity implements ExhibitionV
     }
 
     private void initView() {
-        mAdapter = new CommonAdapter<Exhibition.ExhibitionBean>(this, R.layout.exhibition_recyclerview_item, listData) {
+        mAdapter = new CommonAdapter<Exhibitions.ExhibitionsBean>(this, R.layout.exhibition_recyclerview_item, listData) {
             @Override
-            public void setData(ViewHolder holder, Exhibition.ExhibitionBean exhibitionBean) {
-                holder.setImageWithUrl(R.id.iv_exhibition, exhibitionBean.getImg_url());
-                holder.setText(R.id.tv_content, exhibitionBean.getContent());
+            public void setData(ViewHolder holder, Exhibitions.ExhibitionsBean exhibitionBeans) {
+                holder.setImageWithUrl(R.id.iv_exhibition, exhibitionBeans.getImg_url());
+                holder.setText(R.id.tv_content, exhibitionBeans.getContent());
             }
         };
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(this, mAdapter);
@@ -103,8 +104,8 @@ public class ExhibitionActivity extends AppCompatActivity implements ExhibitionV
     }
 
     @Override
-    public void initRecyclerView(List<Exhibition.ExhibitionBean> exhibitionBeanList) {
-        listData.addAll(exhibitionBeanList);
+    public void initRecyclerView(List<Exhibitions.ExhibitionsBean> exhibitionBeansList) {
+        listData.addAll(exhibitionBeansList);
         exhibitionRecyclerView.refreshComplete();
         mAdapter.notifyDataSetChanged();
     }
