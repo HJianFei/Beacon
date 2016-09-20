@@ -21,6 +21,7 @@ import com.hjianfei.beacon.presenter.home.HomePresenter;
 import com.hjianfei.beacon.presenter.home.HomePresenterImpl;
 import com.hjianfei.beacon.view.appreciate.AppreciateActivity;
 import com.hjianfei.beacon.view.base.BaseFragment;
+import com.hjianfei.beacon.view.exhibitiondetail.ExhibitionDetailActivity;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
@@ -230,7 +231,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
     @OnClick({R.id.home_blue_and_white, R.id.home_treasure_appreciate,
             R.id.home_nature_specimen, R.id.home_special_appreciate,
             R.id.forecast_more, R.id.often_more, R.id.temp_more,
-            R.id.back_more})
+            R.id.back_more, R.id.iv_forecast_more, R.id.iv_often_more, R.id.iv_temp_more, R.id.iv_back_more})
     public void onClickListener(View view) {
         switch (view.getId()) {
             case R.id.home_blue_and_white:
@@ -265,9 +266,27 @@ public class HomeFragment extends BaseFragment implements HomeView {
             case R.id.temp_more:
 
                 break;
-            case R.id.back_more:
+            case R.id.iv_forecast_more:
+                mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
+                startActivity(mIntent);
 
                 break;
+            case R.id.iv_often_more:
+                mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
+                startActivity(mIntent);
+
+                break;
+            case R.id.iv_temp_more:
+                mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
+                startActivity(mIntent);
+
+                break;
+            case R.id.iv_back_more:
+                mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
+                startActivity(mIntent);
+
+                break;
+
         }
 
     }

@@ -9,7 +9,7 @@ package com.hjianfei.beacon.constants;
 public class Urls {
 
     //服务器地址
-    public static final String API_SERVER = "http://192.168.1.14:8080/BeaconSys/";
+    public static final String API_SERVER = "http://192.168.1.117:8080/BeaconSys/";
     //首页ViewPager数据地址
     public static final String API_VIEWPAGER = "viewPager!getAllViewPager";
     //获取全部青花瓷之约的信息
@@ -43,6 +43,8 @@ public class Urls {
     public static final String ALL_EDUCATION_BY_TYPE_0 = "education!getAllEducation?type=0";
     //广东历史
     public static final String ALL_EDUCATION_BY_TYPE_1 = "education!getAllEducation?type=1";
+    //展览详情
+    public static final String EXHIBITION_DETAIL="exhibitionDetail!getExhibitionDetails";
 
 }
 
