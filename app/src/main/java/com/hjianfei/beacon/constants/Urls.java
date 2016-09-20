@@ -9,17 +9,11 @@ package com.hjianfei.beacon.constants;
 public class Urls {
 
     //服务器地址
-    public static final String API_SERVER = "http://192.168.1.117:8080/BeaconSys/";
+    public static final String API_SERVER = "http://192.168.0.106:8080/BeaconSys/";
     //首页ViewPager数据地址
     public static final String API_VIEWPAGER = "viewPager!getAllViewPager";
-    //获取全部青花瓷之约的信息
-    public static final String API_HOME_BLUE_AND_WHITE = "appreciate!getAllAppreciate?type=青花瓷之约";
-    //获取全部珍品鉴赏的信息
-    public static final String HOME_TREASURE_APPRECIATE = "appreciate!getAllAppreciate?type=珍品鉴赏";
-    //获取全部专题鉴赏的信息
-    public static final String HOME_NATURE_SPECIMEN = "appreciate!getAllAppreciate?type=专题鉴赏";
-    //获取全部自然标本的信息
-    public static final String HOME_SPECIAL_APPRECIATE = "appreciate!getAllAppreciate?type=自然标本";
+    //获取全部青花瓷之约、珍品鉴赏、专题鉴赏、自然标本的信息
+    public static final String API_HOME_APPRECIATES_BY_TYPE = "appreciate!getAllAppreciate";
     //获取展览预告的信息
     public static final String IV_FORECAST_MORE = "exhibition!getFirstExhibition?type=0";
     //获取常设展览的信息
@@ -31,7 +25,7 @@ public class Urls {
     //获取全部展览的信息type=0,1,2,3代表展览预告，常设展览，临时展厅，展览回顾
 //    public static final String ALL_EXHIBITION_BY_TYPE_0 = "exhibition!getAllExhibition";
     //展览预告
-    public static final String ALL_EXHIBITION_BY_TYPE_0 = "exhibition!getAllExhibition?type=0";
+    public static final String ALL_EXHIBITION_BY_TYPE_0 = "exhibition!getAllExhibition";
     //常设展览
     public static final String ALL_EXHIBITION_BY_TYPE_1 = "exhibition!getAllExhibition?type=1";
     //临时展厅

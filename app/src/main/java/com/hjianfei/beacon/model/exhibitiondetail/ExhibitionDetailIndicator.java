@@ -15,5 +15,5 @@ public interface ExhibitionDetailIndicator {
         void onError();
     }
 
-    void getExhibitionDetail(onFinishListener listener);
+    void getExhibitionDetail(String detail_url,onFinishListener listener);
 }

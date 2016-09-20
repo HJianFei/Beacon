@@ -10,6 +10,7 @@ import com.hjianfei.beacon.bean.ViewPager;
 import com.hjianfei.beacon.constants.Urls;
 
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -38,21 +39,12 @@ public interface Api {
     Observable<Exhibition> getBack();
 
     //获取全部青花瓷之约的信息
-    @GET(Urls.API_HOME_BLUE_AND_WHITE)
-    Observable<Appreciates> getAllAppatesByType_0();
-
-    @GET(Urls.HOME_TREASURE_APPRECIATE)
-    Observable<Appreciates> getAllAppatesByType_1();
-
-    @GET(Urls.HOME_NATURE_SPECIMEN)
-    Observable<Appreciates> getAllAppatesByType_2();
-
-    @GET(Urls.HOME_SPECIAL_APPRECIATE)
-    Observable<Appreciates> getAllAppatesByType_3();
+    @GET(Urls.API_HOME_APPRECIATES_BY_TYPE)
+    Observable<Appreciates> getAllAppreciatesByType(@Query("type") String type);
 
     //获取全部展览信息(展览预告)
     @GET(Urls.ALL_EXHIBITION_BY_TYPE_0)
-    Observable<Exhibitions> getAllExhibitionByType_0();
+    Observable<Exhibitions> getAllExhibitionByType_0(@Query("type") String type);
 
     //获取全部展览信息(展览预告)
     @GET(Urls.ALL_EXHIBITION_BY_TYPE_1)
@@ -77,6 +69,6 @@ public interface Api {
 
     //展览详情
     @GET(Urls.EXHIBITION_DETAIL)
-    Observable<ExhibitionDetail> getExhibitionDetails();
+    Observable<ExhibitionDetail> getExhibitionDetails(@Query("detail_url") String detail_url);
 
 }

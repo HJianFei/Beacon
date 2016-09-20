@@ -28,15 +28,16 @@ public class AppreciatePresenterImpl implements AppreciatePresenter, AppreciateI
         if (null != mAppreciateView) {
             mAppreciateView.showProgress();
         }
-        if ("青花瓷之约".equals(tag)) {
-            mAppreciateIndicator.getAllAppreciateByType_0(this);
-        } else if ("珍品鉴赏".equals(tag)) {
-            mAppreciateIndicator.getAllAppreciateByType_1(this);
-        } else if ("自然标本".equals(tag)) {
-            mAppreciateIndicator.getAllAppreciateByType_2(this);
-        } else if ("专题鉴赏".equals(tag)) {
-            mAppreciateIndicator.getAllAppreciateByType_3(this);
-        }
+        mAppreciateIndicator.getAllAppreciateByType(tag, this);
+//        if ("青花瓷之约".equals(tag)) {
+//            mAppreciateIndicator.getAllAppreciateByType_0(this);
+//        } else if ("珍品鉴赏".equals(tag)) {
+//            mAppreciateIndicator.getAllAppreciateByType_1(this);
+//        } else if ("自然标本".equals(tag)) {
+//            mAppreciateIndicator.getAllAppreciateByType_2(this);
+//        } else if ("专题鉴赏".equals(tag)) {
+//            mAppreciateIndicator.getAllAppreciateByType_3(this);
+//        }
 
     }
 

@@ -25,13 +25,13 @@ public interface AppreciateIndicator {
         void onError();
     }
 
-    void getAllAppreciateByType_0(onFinishListener listener);
+    void getAllAppreciateByType(String tag,onFinishListener listener);
 
-    void getAllAppreciateByType_1(onFinishListener listener);
-
-    void getAllAppreciateByType_2(onFinishListener listener);
-
-    void getAllAppreciateByType_3(onFinishListener listener);
+//    void getAllAppreciateByType_1(onFinishListener listener);
+//
+//    void getAllAppreciateByType_2(onFinishListener listener);
+//
+//    void getAllAppreciateByType_3(onFinishListener listener);
 
     void getRefreshAllAppreciateByType_0(onFinishListener listener);
 

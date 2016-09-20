@@ -39,10 +39,11 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String detail_url=getIntent().getStringExtra("detail_url");
         setContentView(R.layout.activity_exhibition_detail);
         ButterKnife.bind(this);
         mExhibitionDetailPresenter = new ExhibitionDetailPresenterImpl(this);
-        mExhibitionDetailPresenter.onStart();
+        mExhibitionDetailPresenter.onStart(detail_url);
     }
 
     @Override

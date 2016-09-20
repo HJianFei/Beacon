@@ -6,7 +6,7 @@ package com.hjianfei.beacon.presenter.exhibitiondetail;
 
 public interface ExhibitionDetailPresenter {
 
-    void onStart();
+    void onStart(String detail_url);
 
     void onDestroy();
 }

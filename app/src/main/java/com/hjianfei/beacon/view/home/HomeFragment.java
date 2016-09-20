@@ -21,6 +21,7 @@ import com.hjianfei.beacon.presenter.home.HomePresenter;
 import com.hjianfei.beacon.presenter.home.HomePresenterImpl;
 import com.hjianfei.beacon.view.appreciate.AppreciateActivity;
 import com.hjianfei.beacon.view.base.BaseFragment;
+import com.hjianfei.beacon.view.exhibition.ExhibitionActivity;
 import com.hjianfei.beacon.view.exhibitiondetail.ExhibitionDetailActivity;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
@@ -31,6 +32,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+import static com.hjianfei.beacon.R.id.forecast_more;
 import static com.hjianfei.beacon.R.id.home_treasure_appreciate;
 
 public class HomeFragment extends BaseFragment implements HomeView {
@@ -48,7 +50,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
     Button mHomeNatureSpecimen;
     @BindView(R.id.home_special_appreciate)
     Button mHomeSpecialAppreciate;
-    @BindView(R.id.forecast_more)
+    @BindView(forecast_more)
     TextView mForecastMore;
     @BindView(R.id.iv_forecast_more)
     ImageView mIvForecastMore;
@@ -140,51 +142,114 @@ public class HomeFragment extends BaseFragment implements HomeView {
     }
 
     @Override
-    public void initForecastExhibition(Exhibition exhibition) {
-        System.out.println(exhibition);
+    public void initForecastExhibition(final Exhibition exhibition) {
         Glide.with(mContext)
                 .load(exhibition.getExhibition().getImg_url())
                 .placeholder(R.drawable.photo)
                 .error(R.drawable.photo)
                 .into(mIvForecastMore);
         mForecastTitle.setText(exhibition.getExhibition().getContent());
+        mForecastMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIntent = new Intent(mContext, ExhibitionActivity.class);
+                mIntent.putExtra("type", "0");
+                startActivity(mIntent);
+
+            }
+        });
+        mIvForecastMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
+                mIntent.putExtra("detail_url", exhibition.getExhibition().getDetail_url());
+                startActivity(mIntent);
+            }
+        });
 
 
     }
 
     @Override
-    public void initOftenExhibition(Exhibition exhibition) {
-        System.out.println(exhibition);
+    public void initOftenExhibition(final Exhibition exhibition) {
         Glide.with(mContext)
                 .load(exhibition.getExhibition().getImg_url())
                 .placeholder(R.drawable.photo)
                 .error(R.drawable.photo)
                 .into(mIvOftenMore);
         mOftenTitle.setText(exhibition.getExhibition().getContent());
+        mOftenMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIntent = new Intent(mContext, ExhibitionActivity.class);
+                mIntent.putExtra("type", "1");
+                startActivity(mIntent);
 
+            }
+        });
+        mIvOftenMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
+                mIntent.putExtra("detail_url", exhibition.getExhibition().getDetail_url());
+                startActivity(mIntent);
+            }
+        });
     }
 
     @Override
-    public void initTempExhibition(Exhibition exhibition) {
-        System.out.println(exhibition);
+    public void initTempExhibition(final Exhibition exhibition) {
         Glide.with(mContext)
                 .load(exhibition.getExhibition().getImg_url())
                 .placeholder(R.drawable.photo)
                 .error(R.drawable.photo)
                 .into(mIvTempMore);
         mTempTitle.setText(exhibition.getExhibition().getContent());
+        mTempMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIntent = new Intent(mContext, ExhibitionActivity.class);
+                mIntent.putExtra("type", "2");
+                startActivity(mIntent);
+
+            }
+        });
+        mIvTempMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
+                mIntent.putExtra("detail_url", exhibition.getExhibition().getDetail_url());
+                startActivity(mIntent);
+            }
+        });
 
     }
 
     @Override
-    public void initBackExhibition(Exhibition exhibition) {
-        System.out.println(exhibition);
+    public void initBackExhibition(final Exhibition exhibition) {
         Glide.with(mContext)
                 .load(exhibition.getExhibition().getImg_url())
                 .placeholder(R.drawable.photo)
                 .error(R.drawable.photo)
                 .into(mIvBackMore);
         mBackTitle.setText(exhibition.getExhibition().getContent());
+        mBackMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIntent = new Intent(mContext, ExhibitionActivity.class);
+                mIntent.putExtra("type", "3");
+                startActivity(mIntent);
+
+            }
+        });
+        mIvBackMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
+                mIntent.putExtra("detail_url", exhibition.getExhibition().getDetail_url());
+                startActivity(mIntent);
+            }
+        });
 
     }
 
@@ -229,9 +294,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
     }
 
     @OnClick({R.id.home_blue_and_white, R.id.home_treasure_appreciate,
-            R.id.home_nature_specimen, R.id.home_special_appreciate,
-            R.id.forecast_more, R.id.often_more, R.id.temp_more,
-            R.id.back_more, R.id.iv_forecast_more, R.id.iv_often_more, R.id.iv_temp_more, R.id.iv_back_more})
+            R.id.home_nature_specimen, R.id.home_special_appreciate})
     public void onClickListener(View view) {
         switch (view.getId()) {
             case R.id.home_blue_and_white:
@@ -247,42 +310,13 @@ public class HomeFragment extends BaseFragment implements HomeView {
                 break;
             case R.id.home_nature_specimen:
                 mIntent = new Intent(mContext, AppreciateActivity.class);
-                mIntent.putExtra(TAG, "专题鉴赏");
+                mIntent.putExtra(TAG, "自然标本");
                 startActivity(mIntent);
 
                 break;
             case R.id.home_special_appreciate:
                 mIntent = new Intent(mContext, AppreciateActivity.class);
-                mIntent.putExtra(TAG, "自然标本");
-                startActivity(mIntent);
-
-                break;
-            case R.id.forecast_more:
-
-                break;
-            case R.id.often_more:
-
-                break;
-            case R.id.temp_more:
-
-                break;
-            case R.id.iv_forecast_more:
-                mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
-                startActivity(mIntent);
-
-                break;
-            case R.id.iv_often_more:
-                mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
-                startActivity(mIntent);
-
-                break;
-            case R.id.iv_temp_more:
-                mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
-                startActivity(mIntent);
-
-                break;
-            case R.id.iv_back_more:
-                mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
+                mIntent.putExtra(TAG, "专题鉴赏");
                 startActivity(mIntent);
 
                 break;

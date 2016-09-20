@@ -37,11 +37,11 @@ public class ExhibitionDetailPresenterImpl implements ExhibitionDetailPresenter,
     }
 
     @Override
-    public void onStart() {
+    public void onStart(String detail_url) {
         if (null != mExhibitionDetailView) {
             mExhibitionDetailView.showProgress();
         }
-        mExhibitionDetailIndicator.getExhibitionDetail(this);
+        mExhibitionDetailIndicator.getExhibitionDetail(detail_url,this);
     }
 
     @Override

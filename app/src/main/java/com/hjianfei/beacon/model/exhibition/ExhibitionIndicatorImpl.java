@@ -1,6 +1,6 @@
-package com.hjianfei.beacon.model.exhibitiondetail;
+package com.hjianfei.beacon.model.exhibition;
 
-import com.hjianfei.beacon.bean.ExhibitionDetail;
+import com.hjianfei.beacon.bean.Exhibitions;
 import com.hjianfei.beacon.utils.NetWorkUtils;
 
 import rx.Observer;
@@ -11,14 +11,14 @@ import rx.schedulers.Schedulers;
  * Created by HJianFei on 2016/9/20.
  */
 
-public class ExhibitionDetailIndicatorImpl implements ExhibitionDetailIndicator {
+public class ExhibitionIndicatorImpl implements ExhibitionIndicator {
 
     @Override
-    public void getExhibitionDetail(String detail_url,final onFinishListener listener) {
-        NetWorkUtils.getApi().getExhibitionDetails(detail_url)
+    public void getAllExhibitions(String type,final onFinishListener listener) {
+        NetWorkUtils.getApi().getAllExhibitionByType_0(type)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ExhibitionDetail>() {
+                .subscribe(new Observer<Exhibitions>() {
                     @Override
                     public void onCompleted() {
 
@@ -26,16 +26,24 @@ public class ExhibitionDetailIndicatorImpl implements ExhibitionDetailIndicator 
 
                     @Override
                     public void onError(Throwable e) {
-                        listener.onError();
-
 
                     }
 
                     @Override
-                    public void onNext(ExhibitionDetail exhibitionDetail) {
-                        listener.onFinish(exhibitionDetail);
+                    public void onNext(Exhibitions exhibitions) {
 
                     }
                 });
+
+    }
+
+    @Override
+    public void RefreshExhibitions(onFinishListener listener) {
+
+    }
+
+    @Override
+    public void LoadMoreExhibitions(onFinishListener listener) {
+
     }
 }

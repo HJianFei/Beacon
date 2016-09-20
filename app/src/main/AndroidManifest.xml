@@ -31,8 +31,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".SplashActivity" />
-        <activity android:name=".view.appreciate.AppreciateActivity"></activity>
-        <activity android:name=".view.exhibitiondetail.ExhibitionDetailActivity"></activity>
+        <activity android:name=".view.appreciate.AppreciateActivity" />
+        <activity android:name=".view.exhibitiondetail.ExhibitionDetailActivity" />
+        <activity android:name=".view.exhibition.ExhibitionActivity"></activity>
     </application>
 
 </manifest>
