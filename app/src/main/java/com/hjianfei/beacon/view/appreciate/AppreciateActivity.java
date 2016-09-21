@@ -1,11 +1,11 @@
 package com.hjianfei.beacon.view.appreciate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
@@ -17,6 +17,7 @@ import com.hjianfei.beacon.adapter.ViewHolder;
 import com.hjianfei.beacon.bean.Appreciates;
 import com.hjianfei.beacon.presenter.appreciate.AppreciatePresenter;
 import com.hjianfei.beacon.presenter.appreciate.AppreciatePresenterImpl;
+import com.hjianfei.beacon.view.appreciatedetail.AppreciateDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +96,9 @@ public class AppreciateActivity extends AppCompatActivity implements AppreciateV
         mLRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
-                Toast.makeText(AppreciateActivity.this, "item:" + i, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AppreciateActivity.this, AppreciateDetailActivity.class);
+                intent.putExtra("detail_url", listData.get(i).getDetail_url());
+                startActivity(intent);
             }
 
             @Override
