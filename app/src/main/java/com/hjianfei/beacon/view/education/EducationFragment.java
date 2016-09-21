@@ -83,18 +83,18 @@ public class EducationFragment extends BaseFragment implements EducationView {
         View view = inflater.inflate(R.layout.fragment_education, container, false);
         ButterKnife.bind(this, view);
         mEducationPresenter = new EducationPresenterImpl(this);
-        mEducationPresenter.onStart("小知识");
+        mEducationPresenter.onStart("0");
         segmentControl.setOnSegmentControlClickListener(new SegmentControl.OnSegmentControlClickListener() {
             @Override
             public void onSegmentControlClick(int index) {
                 switch (index) {
                     case 0:
-                        T.showShort(mContext, "小知识");
-                        mEducationPresenter.onStart("小知识");
+                        listData.clear();
+                        mEducationPresenter.onStart("0");
                         break;
                     case 1:
-                        T.showShort(mContext, "广东历史");
-                        mEducationPresenter.onStart("广东历史");
+                        listData.clear();
+                        mEducationPresenter.onStart("1");
                         break;
                 }
             }

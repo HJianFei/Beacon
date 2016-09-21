@@ -65,8 +65,8 @@ public interface Api {
 
     //获取全部教育信息
     //小知识
-    @GET(Urls.ALL_EDUCATION_BY_TYPE_0)
-    Observable<Educations> getAllEducationByType_0();
+    @GET(Urls.ALL_EDUCATION_BY_TYPE)
+    Observable<Educations> getAllEducationByType(@Query("type") String type);
 
     //广东历史
     @GET(Urls.ALL_EDUCATION_BY_TYPE_1)

@@ -36,7 +36,7 @@ public class Urls {
     public static final String ALL_EXHIBITION_BY_TYPE_3 = "exhibition!getAllExhibition?type=3";
     //获取全部教育数据
     //小知识
-    public static final String ALL_EDUCATION_BY_TYPE_0 = "education!getAllEducation?type=0";
+    public static final String ALL_EDUCATION_BY_TYPE= "education!getAllEducation";
     //广东历史
     public static final String ALL_EDUCATION_BY_TYPE_1 = "education!getAllEducation?type=1";
     //展览详情

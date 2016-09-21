@@ -14,32 +14,8 @@ import rx.schedulers.Schedulers;
 public class EducationIndicatorImpl implements EducationIndicator {
 
     @Override
-    public void getAllEducationByType_0(final onFinishListener listener) {
-        NetWorkUtils.getApi().getAllEducationByType_0()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Educations>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(Educations educations) {
-                        listener.onEducationFinish(educations.getEducations());
-
-                    }
-                });
-    }
-
-    @Override
-    public void getAllEducationByType_1(final onFinishListener listener) {
-        NetWorkUtils.getApi().getAllEducationByType_1()
+    public void getAllEducationByType(String type, final onFinishListener listener) {
+        NetWorkUtils.getApi().getAllEducationByType(type)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Educations>() {

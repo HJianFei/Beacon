@@ -25,7 +25,7 @@ public class EducationPresenterImpl implements EducationPresenter, EducationIndi
         if (null != mEducationView) {
             mEducationView.showProgress();
         }
-        mEducationIndicator.getAllEducationByType_0(this);
+        mEducationIndicator.getAllEducationByType(tag,this);
 
     }
 

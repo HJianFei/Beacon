@@ -24,9 +24,7 @@ public interface EducationIndicator {
         void onError();
     }
 
-    void getAllEducationByType_0(onFinishListener listener);
-
-    void getAllEducationByType_1(onFinishListener listener);
+    void getAllEducationByType(String type,onFinishListener listener);
 
     void getRefreshAllEducationByType_0(onFinishListener listener);
 

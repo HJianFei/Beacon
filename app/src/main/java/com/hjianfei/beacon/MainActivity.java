@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
-import com.hjianfei.beacon.view.education.EducationFragment;
 import com.hjianfei.beacon.view.home.HomeFragment;
 import com.hjianfei.beacon.view.navigation.NavigationFragment;
 import com.hjianfei.beacon.view.person.PersonFragment;
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, "首页").setActiveColorResource(R.color.orange))
                 .addItem(new BottomNavigationItem(R.drawable.ic_book_white_24dp, "导航").setActiveColorResource(R.color.teal))
-                .addItem(new BottomNavigationItem(R.drawable.ic_music_note_white_24dp, "教育").setActiveColorResource(R.color.blue))
+//                .addItem(new BottomNavigationItem(R.drawable.ic_music_note_white_24dp, "教育").setActiveColorResource(R.color.blue))
                 .addItem(new BottomNavigationItem(R.drawable.ic_tv_white_24dp, "我的").setActiveColorResource(R.color.brown))
                 .setFirstSelectedPosition(0)
                 .initialise();
@@ -54,9 +53,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
             case 2:
                 setTabSelection(2);
                 break;
-            case 3:
-                setTabSelection(3);
-                break;
+//            case 3:
+//                setTabSelection(3);
+//                break;
 
         }
 
@@ -72,11 +71,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
             transaction.replace(R.id.fl_content, NavigationFragment.newInstance(null, null));
         } else if (i == 2) {
-
-            transaction.replace(R.id.fl_content, EducationFragment.newInstance(null, null));
-        } else if (i == 3) {
-
             transaction.replace(R.id.fl_content, PersonFragment.newInstance(null, null));
+//            transaction.replace(R.id.fl_content, EducationFragment.newInstance(null, null));
+//        } else if (i == 3) {
+//
+//            transaction.replace(R.id.fl_content, PersonFragment.newInstance(null, null));
         }
         transaction.commit();
 
