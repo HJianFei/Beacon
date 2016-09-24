@@ -2,6 +2,7 @@ package com.hjianfei.beacon.view.education;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -18,8 +19,8 @@ import com.hjianfei.beacon.adapter.ViewHolder;
 import com.hjianfei.beacon.bean.Educations;
 import com.hjianfei.beacon.presenter.education.EducationPresenter;
 import com.hjianfei.beacon.presenter.education.EducationPresenterImpl;
-import com.hjianfei.beacon.utils.T;
 import com.hjianfei.beacon.view.base.BaseFragment;
+import com.hjianfei.beacon.view.educationdetail.EducationDetailActivity;
 import com.sevenheaven.segmentcontrol.SegmentControl;
 
 import java.util.ArrayList;
@@ -147,7 +148,9 @@ public class EducationFragment extends BaseFragment implements EducationView {
         mLRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
-                T.showShort(mContext, "item:" + i);
+                Intent intent = new Intent(mContext, EducationDetailActivity.class);
+                intent.putExtra("detail_url", listData.get(i).getDetail_url());
+                startActivity(intent);
             }
 
             @Override

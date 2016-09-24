@@ -43,4 +43,5 @@ dependencies {
     compile 'com.jude:rollviewpager:1.4.5'
     compile 'com.github.jdsjlzx:LRecyclerView:1.1.0'
     compile 'com.7heaven.widgets:segmentcontrol:1.16'
+    compile 'org.altbeacon:android-beacon-library:2.9.1'
 }

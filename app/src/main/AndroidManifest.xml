@@ -34,7 +34,8 @@
         <activity android:name=".view.appreciate.AppreciateActivity" />
         <activity android:name=".view.exhibitiondetail.ExhibitionDetailActivity" />
         <activity android:name=".view.exhibition.ExhibitionActivity" />
-        <activity android:name=".view.appreciatedetail.AppreciateDetailActivity"></activity>
+        <activity android:name=".view.appreciatedetail.AppreciateDetailActivity" />
+        <activity android:name=".view.educationdetail.EducationDetailActivity"></activity>
     </application>
 
 </manifest>
