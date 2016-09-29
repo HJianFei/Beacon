@@ -11,7 +11,6 @@ import com.hjianfei.beacon.adapter.ExhibitionDetailViewPagerAdapter;
 import com.hjianfei.beacon.bean.ExhibitionDetail;
 import com.hjianfei.beacon.presenter.exhibitiondetail.ExhibitionDetailPresenter;
 import com.hjianfei.beacon.presenter.exhibitiondetail.ExhibitionDetailPresenterImpl;
-import com.hjianfei.beacon.utils.richtextutils.ImageTextUtil;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 
@@ -32,7 +31,7 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
     @BindView(R.id.time)
     TextView time;
     @BindView(R.id.content)
-    TextView content;
+    TextView contents;
     private SweetAlertDialog mDialog;
 
     private ExhibitionDetailPresenter mExhibitionDetailPresenter;
@@ -52,7 +51,7 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
         title.setText(exhibitionDetail.getExhibitionDetail().getTitle());
         address.setText(exhibitionDetail.getExhibitionDetail().getAddress());
         time.setText(exhibitionDetail.getExhibitionDetail().getShow_time());
-        ImageTextUtil.setImageText(content,exhibitionDetail.getExhibitionDetail().getContent());
+        contents.setText(exhibitionDetail.getExhibitionDetail().getContent());
         String img_url = exhibitionDetail.getExhibitionDetail().getImg_url();
         img_url = img_url.substring(1, img_url.length() - 1);
         String[] img_urls = img_url.split(",");

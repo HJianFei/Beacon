@@ -27,6 +27,7 @@ public class AppreciateIndicatorImpl implements AppreciateIndicator {
 
                     @Override
                     public void onError(Throwable e) {
+                        System.out.println(e.toString());
 
                     }
 
@@ -38,81 +39,6 @@ public class AppreciateIndicatorImpl implements AppreciateIndicator {
                     }
                 });
     }
-
-//    @Override
-//    public void getAllAppreciateByType_1(final onFinishListener listener) {
-//        NetWorkUtils.getApi().getAllAppatesByType_1()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<Appreciates>() {
-//                    @Override
-//                    public void onCompleted() {
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onNext(Appreciates appreciates) {
-//                        listener.onAppreciateFinish(appreciates.getAppreciates());
-//
-//
-//                    }
-//                });
-//    }
-//
-//    @Override
-//    public void getAllAppreciateByType_2(final onFinishListener listener) {
-//        NetWorkUtils.getApi().getAllAppatesByType_2()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<Appreciates>() {
-//                    @Override
-//                    public void onCompleted() {
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onNext(Appreciates appreciates) {
-//                        listener.onAppreciateFinish(appreciates.getAppreciates());
-//
-//
-//                    }
-//                });
-//    }
-//
-//    @Override
-//    public void getAllAppreciateByType_3(final onFinishListener listener) {
-//        NetWorkUtils.getApi().getAllAppatesByType_3()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<Appreciates>() {
-//                    @Override
-//                    public void onCompleted() {
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onNext(Appreciates appreciates) {
-//                        listener.onAppreciateFinish(appreciates.getAppreciates());
-//
-//
-//                    }
-//                });
-//    }
 
     @Override
     public void getRefreshAllAppreciateByType_0(onFinishListener listener) {

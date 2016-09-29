@@ -8,6 +8,7 @@ import com.hjianfei.beacon.bean.Educations;
 import com.hjianfei.beacon.bean.Exhibition;
 import com.hjianfei.beacon.bean.ExhibitionDetail;
 import com.hjianfei.beacon.bean.Exhibitions;
+import com.hjianfei.beacon.bean.NavigationInfo;
 import com.hjianfei.beacon.bean.ViewPager;
 import com.hjianfei.beacon.constants.Urls;
 
@@ -49,20 +50,8 @@ public interface Api {
     Observable<AppreciateDetail> getAppreciateDetails(@Query("detail_url") String detail_url);
 
     //获取全部展览信息(展览预告)
-    @GET(Urls.ALL_EXHIBITION_BY_TYPE_0)
-    Observable<Exhibitions> getAllExhibitionByType_0(@Query("type") String type);
-
-    //获取全部展览信息(展览预告)
-    @GET(Urls.ALL_EXHIBITION_BY_TYPE_1)
-    Observable<Exhibitions> getAllExhibitionByType_1();
-
-    //获取全部展览信息(展览预告)
-    @GET(Urls.ALL_EXHIBITION_BY_TYPE_2)
-    Observable<Exhibitions> getAllExhibitionByType_2();
-
-    //获取全部展览信息(展览预告)
-    @GET(Urls.ALL_EXHIBITION_BY_TYPE_3)
-    Observable<Exhibitions> getAllExhibitionByType_3();
+    @GET(Urls.ALL_EXHIBITION_BY_TYPE)
+    Observable<Exhibitions> getAllExhibitionByType(@Query("type") String type);
 
     //获取全部教育信息
     //小知识
@@ -73,12 +62,12 @@ public interface Api {
     @GET(Urls.EDUCATION_DETAIL)
     Observable<EducationDetail> getEducationDetails(@Query("detail_url") String detail_url);
 
-    //广东历史
-    @GET(Urls.ALL_EDUCATION_BY_TYPE_1)
-    Observable<Educations> getAllEducationByType_1();
-
     //展览详情
     @GET(Urls.EXHIBITION_DETAIL)
     Observable<ExhibitionDetail> getExhibitionDetails(@Query("detail_url") String detail_url);
+
+    //导游
+    @GET(Urls.NAVIGATION_ITEM)
+    Observable<NavigationInfo> getNavigationInfo(@Query("minor") String minor);
 
 }

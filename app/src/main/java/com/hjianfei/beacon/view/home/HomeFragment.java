@@ -3,7 +3,6 @@ package com.hjianfei.beacon.view.home;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +24,7 @@ import com.hjianfei.beacon.view.exhibition.ExhibitionActivity;
 import com.hjianfei.beacon.view.exhibitiondetail.ExhibitionDetailActivity;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
-import com.jude.rollviewpager.hintview.ColorPointHintView;
+import com.jude.rollviewpager.hintview.TextHintView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -132,7 +131,9 @@ public class HomeFragment extends BaseFragment implements HomeView {
         //初始化ViewPager
         mHomeViewPager.setPlayDelay(3000);
         mHomeViewPager.setAdapter(new HomeViewPagerAdapter(viewPager.getViewPagers()));
-        mHomeViewPager.setHintView(new ColorPointHintView(mContext, Color.YELLOW, Color.WHITE));
+//        mHomeViewPager.setHintView(new ColorPointHintView(mContext, Color.YELLOW, Color.WHITE));
+        mHomeViewPager.setHintView(new TextHintView(mContext,null));
+
         mHomeViewPager.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {

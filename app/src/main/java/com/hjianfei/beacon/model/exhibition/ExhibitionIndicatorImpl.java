@@ -15,7 +15,7 @@ public class ExhibitionIndicatorImpl implements ExhibitionIndicator {
 
     @Override
     public void getAllExhibitions(String type,final onFinishListener listener) {
-        NetWorkUtils.getApi().getAllExhibitionByType_0(type)
+        NetWorkUtils.getApi().getAllExhibitionByType(type)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Exhibitions>() {

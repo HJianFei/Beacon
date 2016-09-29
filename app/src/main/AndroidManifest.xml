@@ -3,13 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.hjianfei.beacon">
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
@@ -35,7 +37,11 @@
         <activity android:name=".view.exhibitiondetail.ExhibitionDetailActivity" />
         <activity android:name=".view.exhibition.ExhibitionActivity" />
         <activity android:name=".view.appreciatedetail.AppreciateDetailActivity" />
-        <activity android:name=".view.educationdetail.EducationDetailActivity"></activity>
+        <activity android:name=".view.educationdetail.EducationDetailActivity"/>
+        <!-- BRTSDK服务. -->
+        <service
+            android:name="com.brtbeacon.sdk.BleService"
+            android:enabled="true" />
     </application>
 
 </manifest>
