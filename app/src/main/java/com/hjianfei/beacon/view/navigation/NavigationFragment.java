@@ -2,6 +2,7 @@ package com.hjianfei.beacon.view.navigation;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -30,7 +31,7 @@ import com.hjianfei.beacon.application.BaseApplication;
 import com.hjianfei.beacon.bean.NavigationInfo;
 import com.hjianfei.beacon.presenter.navigation.NavigationPresenter;
 import com.hjianfei.beacon.presenter.navigation.NavigationPresenterImpl;
-import com.hjianfei.beacon.utils.T;
+import com.hjianfei.beacon.view.appreciatedetail.AppreciateDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -123,8 +124,9 @@ public class NavigationFragment extends Fragment implements NavigationView, BRTB
         mLRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                String text = "Click position = " + position;
-                T.showShort(mContext, text);
+                Intent intent = new Intent(mContext, AppreciateDetailActivity.class);
+                intent.putExtra("detail_url", dataList.get(position).getNavigationInfo().getDetail_url());
+                startActivity(intent);
             }
 
             @Override
@@ -166,7 +168,7 @@ public class NavigationFragment extends Fragment implements NavigationView, BRTB
 
             SwipeMenuItem deleteItem = new SwipeMenuItem(mContext)
                     .setBackgroundDrawable(R.drawable.selector_red)
-                    .setImage(R.mipmap.ic_launcher)
+                    .setText("收藏")
                     .setWidth(size)
                     .setHeight(size);
 
@@ -174,7 +176,7 @@ public class NavigationFragment extends Fragment implements NavigationView, BRTB
 
             SwipeMenuItem wechatItem = new SwipeMenuItem(mContext)
                     .setBackgroundDrawable(R.drawable.selector_green)
-                    .setImage(R.mipmap.ic_launcher)
+                    .setText("删除")
                     .setWidth(size)
                     .setHeight(size);
 
@@ -197,10 +199,9 @@ public class NavigationFragment extends Fragment implements NavigationView, BRTB
         public void onItemClick(Closeable closeable, int adapterPosition, int menuPosition, int direction) {
             closeable.smoothCloseMenu();// 关闭被点击的菜单。
 
-            if (direction == LRecyclerView.RIGHT_DIRECTION) {
-                T.showShort(mContext, "list第" + adapterPosition + "; 右侧菜》》》》单第" + menuPosition);
-            } else if (direction == LRecyclerView.LEFT_DIRECTION) {
-                T.showShort(mContext, "list第" + adapterPosition + "; 左侧菜单第" + menuPosition);
+            if (menuPosition == 0) {
+            } else if (menuPosition == 1) {
+                mDataAdapter.remove(adapterPosition);
             }
         }
     };
@@ -214,7 +215,6 @@ public class NavigationFragment extends Fragment implements NavigationView, BRTB
     public void onNewBeacon(BRTBeacon brtBeacon) {
 
         boolean contains = brtBeacons.contains(brtBeacon);
-        System.out.println(">>>" + contains);
         if (!contains) {
             brtBeacons.add(brtBeacon);
             mNavigationPresenter.initData(brtBeacon.getMinor() + "");
@@ -247,7 +247,6 @@ public class NavigationFragment extends Fragment implements NavigationView, BRTB
 
     @Override
     public void onDestroy() {
-//        beaconManager.stopRanging();
         super.onDestroy();
     }
 
