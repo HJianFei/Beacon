@@ -75,4 +75,12 @@ public class NavigationInfo {
             this.img_url = img_url;
         }
     }
+
+    @Override
+    public String toString() {
+        return "NavigationInfo{" +
+                "navigationInfo=" + navigationInfo +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

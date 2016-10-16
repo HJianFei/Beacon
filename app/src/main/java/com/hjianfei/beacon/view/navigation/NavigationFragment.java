@@ -252,6 +252,9 @@ public class NavigationFragment extends Fragment implements NavigationView, BRTB
 
     @Override
     public void initNavigationInfo(NavigationInfo navigationInfo) {
+        System.out.println(navigationInfo.getNavigationInfo().getMinor());
+        System.out.println(navigationInfo.getNavigationInfo().getContent());
+        System.out.println(navigationInfo.getNavigationInfo().getImg_url());
         dataList.add(navigationInfo);
         mDataAdapter.setDataList(dataList);
         mLRecyclerViewAdapter.notifyDataSetChanged();
