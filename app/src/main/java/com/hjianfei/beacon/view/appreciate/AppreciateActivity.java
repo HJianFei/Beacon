@@ -2,6 +2,8 @@ package com.hjianfei.beacon.view.appreciate;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -26,9 +28,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+import static com.hjianfei.beacon.R.id.toolbar;
+
 public class AppreciateActivity extends AppCompatActivity implements AppreciateView {
 
-    @BindView(R.id.toolbar)
+    @BindView(toolbar)
     Toolbar mToolbar;
     @BindView(R.id.appreciate_recyclerView)
     LRecyclerView mAppreciateRecyclerView;
@@ -46,6 +50,16 @@ public class AppreciateActivity extends AppCompatActivity implements AppreciateV
         TAG = getIntent().getStringExtra("appreciate_type");
         setContentView(R.layout.activity_appreciate);
         ButterKnife.bind(this);
+        mToolbar.setTitle(TAG);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         initView();
         mAppreciatePresenter = new AppreciatePresenterImpl(this);
         mAppreciatePresenter.onStart(TAG);
@@ -98,7 +112,11 @@ public class AppreciateActivity extends AppCompatActivity implements AppreciateV
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(AppreciateActivity.this, AppreciateDetailActivity.class);
                 intent.putExtra("detail_url", listData.get(i).getDetail_url());
-                startActivity(intent);
+//                startActivity(intent);
+                ActivityOptionsCompat options =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(AppreciateActivity.this,
+                                view.findViewById(R.id.appreciate_item_image), getString(R.string.transition));
+                ActivityCompat.startActivity(AppreciateActivity.this, intent, options.toBundle());
             }
 
             @Override

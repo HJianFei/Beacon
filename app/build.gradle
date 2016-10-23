@@ -43,5 +43,6 @@ dependencies {
     compile 'com.jude:rollviewpager:1.4.5'
     compile 'com.github.jdsjlzx:LRecyclerView:1.1.0'
     compile 'com.7heaven.widgets:segmentcontrol:1.16'
+    compile 'de.hdodenhof:circleimageview:1.3.0'
     compile files('libs/BRT-5.0.4.jar')
 }
