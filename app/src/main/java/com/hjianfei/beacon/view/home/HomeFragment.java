@@ -4,6 +4,8 @@ package com.hjianfei.beacon.view.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,6 +85,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
     private HomePresenter homePresenter;
     private SweetAlertDialog mDialog;
     private Intent mIntent;
+    private View view;
 
     public HomeFragment() {
     }
@@ -114,7 +117,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
         initView();
         return view;
@@ -139,7 +142,11 @@ public class HomeFragment extends BaseFragment implements HomeView {
             public void onItemClick(int position) {
                 mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
                 mIntent.putExtra("detail_url", viewPager.getViewPagers().get(position).getDetail_url());
-                startActivity(mIntent);
+                mIntent.putExtra("title", viewPager.getViewPagers().get(position).getContent());
+                ActivityOptionsCompat options =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+                                view.findViewById(R.id.home_view_pager), getString(R.string.transition));
+                ActivityCompat.startActivity(getActivity(), mIntent, options.toBundle());
 
             }
         });
@@ -167,7 +174,11 @@ public class HomeFragment extends BaseFragment implements HomeView {
             public void onClick(View v) {
                 mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
                 mIntent.putExtra("detail_url", exhibition.getExhibition().getDetail_url());
-                startActivity(mIntent);
+                mIntent.putExtra("title", exhibition.getExhibition().getContent());
+                ActivityOptionsCompat options =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+                                view.findViewById(R.id.iv_forecast_more), getString(R.string.transition));
+                ActivityCompat.startActivity(getActivity(), mIntent, options.toBundle());
             }
         });
 
@@ -196,7 +207,11 @@ public class HomeFragment extends BaseFragment implements HomeView {
             public void onClick(View v) {
                 mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
                 mIntent.putExtra("detail_url", exhibition.getExhibition().getDetail_url());
-                startActivity(mIntent);
+                mIntent.putExtra("title", exhibition.getExhibition().getContent());
+                ActivityOptionsCompat options =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+                                view.findViewById(R.id.iv_often_more), getString(R.string.transition));
+                ActivityCompat.startActivity(getActivity(), mIntent, options.toBundle());
             }
         });
     }
@@ -223,7 +238,11 @@ public class HomeFragment extends BaseFragment implements HomeView {
             public void onClick(View v) {
                 mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
                 mIntent.putExtra("detail_url", exhibition.getExhibition().getDetail_url());
-                startActivity(mIntent);
+                mIntent.putExtra("title", exhibition.getExhibition().getContent());
+                ActivityOptionsCompat options =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+                                view.findViewById(R.id.iv_temp_more), getString(R.string.transition));
+                ActivityCompat.startActivity(getActivity(), mIntent, options.toBundle());
             }
         });
 
@@ -251,7 +270,11 @@ public class HomeFragment extends BaseFragment implements HomeView {
             public void onClick(View v) {
                 mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
                 mIntent.putExtra("detail_url", exhibition.getExhibition().getDetail_url());
-                startActivity(mIntent);
+                mIntent.putExtra("title", exhibition.getExhibition().getContent());
+                ActivityOptionsCompat options =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+                                view.findViewById(R.id.iv_back_more), getString(R.string.transition));
+                ActivityCompat.startActivity(getActivity(), mIntent, options.toBundle());
             }
         });
 
@@ -260,7 +283,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
     @Override
     public void showProgress() {
         mDialog = new SweetAlertDialog(mContext, SweetAlertDialog.PROGRESS_TYPE);
-        mDialog.setTitleText("加载中");
+        mDialog.setTitleText("数据加载中");
         mDialog.show();
     }
 

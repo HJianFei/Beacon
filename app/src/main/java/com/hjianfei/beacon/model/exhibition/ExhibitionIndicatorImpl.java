@@ -1,6 +1,7 @@
 package com.hjianfei.beacon.model.exhibition;
 
 import com.hjianfei.beacon.bean.Exhibitions;
+import com.hjianfei.beacon.utils.L;
 import com.hjianfei.beacon.utils.NetWorkUtils;
 
 import rx.Observer;
@@ -31,6 +32,7 @@ public class ExhibitionIndicatorImpl implements ExhibitionIndicator {
 
                     @Override
                     public void onNext(Exhibitions exhibitions) {
+                        L.d("TAG",exhibitions.getExhibitions().toString());
                         listener.onExhibitionFinish(exhibitions.getExhibitions());
 
                     }

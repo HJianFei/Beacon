@@ -112,7 +112,7 @@ public class AppreciateActivity extends AppCompatActivity implements AppreciateV
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(AppreciateActivity.this, AppreciateDetailActivity.class);
                 intent.putExtra("detail_url", listData.get(i).getDetail_url());
-//                startActivity(intent);
+                intent.putExtra("title", listData.get(i).getContent());
                 ActivityOptionsCompat options =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(AppreciateActivity.this,
                                 view.findViewById(R.id.appreciate_item_image), getString(R.string.transition));

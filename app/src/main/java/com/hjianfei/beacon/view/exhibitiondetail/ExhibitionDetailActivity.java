@@ -2,8 +2,10 @@ package com.hjianfei.beacon.view.exhibitiondetail;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 
 import com.hjianfei.beacon.R;
@@ -32,6 +34,8 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
     TextView time;
     @BindView(R.id.content)
     TextView contents;
+    @BindView(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout collapsingToolbar;
     private SweetAlertDialog mDialog;
 
     private ExhibitionDetailPresenter mExhibitionDetailPresenter;
@@ -39,9 +43,19 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String detail_url=getIntent().getStringExtra("detail_url");
+        String detail_url = getIntent().getStringExtra("detail_url");
+        String mTitle = getIntent().getStringExtra("title");
         setContentView(R.layout.activity_exhibition_detail);
         ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+        collapsingToolbar.setTitle(mTitle);
         mExhibitionDetailPresenter = new ExhibitionDetailPresenterImpl(this);
         mExhibitionDetailPresenter.onStart(detail_url);
     }
@@ -63,7 +77,7 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
     @Override
     public void showProgress() {
         mDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        mDialog.setTitleText("加载中");
+        mDialog.setTitleText("数据加载中");
         mDialog.show();
 
     }

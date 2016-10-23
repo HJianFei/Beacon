@@ -2,6 +2,8 @@ package com.hjianfei.beacon.view.exhibition;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +19,7 @@ import com.hjianfei.beacon.adapter.ViewHolder;
 import com.hjianfei.beacon.bean.Exhibitions;
 import com.hjianfei.beacon.presenter.exhibition.ExhibitionPresenter;
 import com.hjianfei.beacon.presenter.exhibition.ExhibitionPresenterImpl;
+import com.hjianfei.beacon.utils.L;
 import com.hjianfei.beacon.view.exhibitiondetail.ExhibitionDetailActivity;
 
 import java.util.ArrayList;
@@ -48,6 +51,24 @@ public class ExhibitionActivity extends AppCompatActivity implements ExhibitionV
         ButterKnife.bind(this);
         mExhibitionPresenter = new ExhibitionPresenterImpl(this);
         mExhibitionPresenter.onStart(type);
+        if (type.equals("0")) {
+            toolbar.setTitle("展览预告");
+        } else if (type.equals("1")) {
+            toolbar.setTitle("常设展厅");
+        } else if (type.equals("2")) {
+            toolbar.setTitle("临时展厅");
+        } else if (type.equals("3")) {
+            toolbar.setTitle("展览回顾");
+        }
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         initView();
     }
 
@@ -96,7 +117,11 @@ public class ExhibitionActivity extends AppCompatActivity implements ExhibitionV
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(ExhibitionActivity.this, ExhibitionDetailActivity.class);
                 intent.putExtra("detail_url", listData.get(i).getDetail_url());
-                startActivity(intent);
+                intent.putExtra("title", listData.get(i).getContent());
+                ActivityOptionsCompat options =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(ExhibitionActivity.this,
+                                view.findViewById(R.id.iv_exhibition), getString(R.string.transition));
+                ActivityCompat.startActivity(ExhibitionActivity.this, intent, options.toBundle());
 
             }
 
@@ -110,6 +135,7 @@ public class ExhibitionActivity extends AppCompatActivity implements ExhibitionV
 
     @Override
     public void initRecyclerView(List<Exhibitions.ExhibitionsBean> exhibitionBeansList) {
+        L.d("TAG", exhibitionBeansList.get(0).getContent());
         listData.addAll(exhibitionBeansList);
         exhibitionRecyclerView.refreshComplete();
         mAdapter.notifyDataSetChanged();

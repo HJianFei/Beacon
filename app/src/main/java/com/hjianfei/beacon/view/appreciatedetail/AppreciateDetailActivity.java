@@ -15,7 +15,6 @@ import com.hjianfei.beacon.adapter.ExhibitionDetailViewPagerAdapter;
 import com.hjianfei.beacon.bean.AppreciateDetail;
 import com.hjianfei.beacon.presenter.appreciatedetail.AppreciateDetailPresenter;
 import com.hjianfei.beacon.presenter.appreciatedetail.AppreciateDetailPresenterImpl;
-import com.hjianfei.beacon.utils.L;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 
@@ -42,6 +41,7 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String detail_url = getIntent().getStringExtra("detail_url");
+        String mTitle = getIntent().getStringExtra("title");
         setContentView(R.layout.activity_appreciate_detail);
         ButterKnife.bind(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0及以上
@@ -54,6 +54,7 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
             WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
             localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
         }
+        collapsingToolbar.setTitle(mTitle);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -68,10 +69,8 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
 
     @Override
     public void initAppreciateDetailData(AppreciateDetail appreciateDetail) {
-        collapsingToolbar.setTitle(appreciateDetail.getAppreciateDetail().getTitle());
-        title.setText( appreciateDetail.getAppreciateDetail().getTitle());
-        L.d("TAG",appreciateDetail.getAppreciateDetail().getContent());
-        content.setText( appreciateDetail.getAppreciateDetail().getContent());
+        title.setText(appreciateDetail.getAppreciateDetail().getTitle());
+        content.setText(appreciateDetail.getAppreciateDetail().getContent());
         String img_url = appreciateDetail.getAppreciateDetail().getImg_url();
         img_url = img_url.substring(1, img_url.length() - 1);
         String[] img_urls = img_url.split(",");
